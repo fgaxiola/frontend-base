@@ -70,40 +70,8 @@ gulp.task('browser-sync', ['sass', 'twig', 'js'], function () {
   });
 });
 
-/**
- * Compile .scss files into build css directory With autoprefixer no
- * need for vendor prefixes then live reload the browser.
- */
 gulp.task('sass', function () {
   return gulp.src(paths.sass + 'vendors/main.scss')
-    .pipe(sourcemaps.init())
-    // Stay live and reload on error
-	.pipe(plumber({
-		handleError: function (err) {
-			console.log(err);
-			this.emit('end');
-		}
-	}))
-    .pipe(sass({
-		includePaths: [paths.sass + 'vendors/'],
-		outputStyle: 'expanded'
-		// outputStyle: 'compressed'
-		})
-		.on('error', function (err) {
-			console.log(err.message);
-			// sass.logError
-			this.emit('end');
-		})
-	)
-    .pipe(prefix(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], {
-      cascade: true
-    }))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(paths.css));
-});
-
-gulp.task('sass_foundation', function () {
-  return gulp.src(paths.sass + 'vendors/main.foundation.scss')
     .pipe(sourcemaps.init())
     // Stay live and reload on error
 	.pipe(plumber({
@@ -151,8 +119,7 @@ gulp.task('js', function(){
  */
 gulp.task('watch', function () {
 	gulp.watch(paths.build + 'assets/js/script.js', ['js', browserSync.reload]);
-  	gulp.watch(paths.sass + 'vendors/main.scss', ['sass', browserSync.reload]);
-  	gulp.watch(paths.sass + 'vendors/main.foundation.scss', ['sass_foundation', browserSync.reload]);
+  	gulp.watch(paths.sass + 'vendors/**/*.scss', ['sass', browserSync.reload]);
   	gulp.watch(['client/templates/**/*.twig','client/data/*.twig.json'], {cwd:'./'}, ['rebuild']);
 });
 
