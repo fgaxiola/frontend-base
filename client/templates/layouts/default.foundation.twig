@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zxx">
+	<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="assets/css/main.foundation.css">
+  </head>
+<body>	
+    <!-- HEADER -->
+    {% include "../includes/header.twig" %}
+    
+    <!-- MAIN -->
+    <main>
+		{% block content %}
+      <h1>Default</h1>
+		{% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    {% include "../includes/footer.twig" %}
+
+    <!-- SCRIPTS -->
+    {% include "../includes/scripts.twig" %}
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+// Utf-8
+@charset "utf-8";
+@import '../../node_modules/foundation-sites/scss/foundation';
+
+@include foundation-xy-grid-classes(
+  /* options
+  $base-grid: true,
+  $margin-grid: true,
+  $padding-grid: true,
+  $block-grid: true,
+  $collapse: true,
+  $offset: true,
+  $vertical-grid: true,
+  $frame-grid: true
+  */
+);
+body{
+  padding: 0;
+  margin: 0;
+}
+p{
+    font-size: 18px;
+}
+.body{
+  height: 2000px;
+}
+.big-block{
+  display: block;
+  margin-top: 200px;
+  margin-bottom: 200px;
+  height: 1000px;
+  background-color: #eaeaea;
+}
+.header, .footer{
+  background-color: #888;
+  color: #ffffff;
+}
