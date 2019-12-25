@@ -29,6 +29,12 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-twig": "^1.2.0",
     "gulp-watch": "^5.0.1",
-    "jquery": "^3.4.1"
+    "jquery": "^3.4.1",
+    "milsymbol": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "gulp-babel": "^8.0.0"
   }
 }

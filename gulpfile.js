@@ -13,6 +13,8 @@ var gulp = require('gulp'),
 	browserSync = require('browser-sync'),
 	fs = require('fs');
 
+const babel = require('gulp-babel');
+
 /*
  * Directories here
  */
@@ -20,6 +22,7 @@ var paths = {
   build: './build/',
   sass: './scss/',
   css: './build/assets/css/',
+  js: './js/',
   data: './client/data/'
 };
 
@@ -113,12 +116,49 @@ gulp.task('js', function(){
 		.pipe(gulp.dest('build/assets/js'));
 });
 
+gulp.task('es6', () => { 
+  gulp.src('./js/script.js')
+    // Stop the process if an error is thrown.
+    .pipe(plumber())
+    // Transpile the JS code using Babel's preset-env.
+    .pipe(babel({
+      presets: [
+        ['@babel/env', {
+          modules: false
+        }]
+      ]
+    }))
+    .pipe(sourcemaps.write('.'))	
+    // Save each component as a separate file in dist.
+    .pipe(gulp.dest('./build/assets/js'))
+});
+
+// exports.default = function(done) {
+//   // This will grab any file within src/components or its
+//   // subdirectories, then ...
+//   gulp.src('./js/**/*.js')
+//     // Stop the process if an error is thrown.
+//     .pipe(plumber())
+//     // Transpile the JS code using Babel's preset-env.
+//     .pipe(babel({
+//       presets: [
+//         ['@babel/env', {
+//           modules: false
+//         }]
+//       ]
+//     }))
+//     // Save each component as a separate file in dist.
+//     .pipe(gulp.dest('./build/assets/js'))
+// };
+
+
 /**
  * Watch scss files for changes & recompile
  * Watch .twig files run twig-rebuild then reload BrowserSync
  */
 gulp.task('watch', function () {
-	gulp.watch(paths.build + 'assets/js/script.js', ['js', browserSync.reload]);
+	// gulp.watch(paths.build + 'assets/js/script.js', ['js', browserSync.reload]);
+	gulp.watch(paths.js + '**/*.js', ['es6', browserSync.reload]);
   	gulp.watch(paths.sass + 'vendors/**/*.scss', ['sass', browserSync.reload]);
   	gulp.watch(['client/templates/**/*.twig','client/data/*.twig.json'], {cwd:'./'}, ['rebuild']);
 });
