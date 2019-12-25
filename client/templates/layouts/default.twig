@@ -14,17 +14,15 @@
                 <div class="cell medium-shrink header">
                     {% include "../includes/header.twig" %}
                 </div>
+
                 {# content #}
-                <div class="cell medium-auto body medium-cell-block-container">
-                    <main class="grid-y medium-cell-block-y">
-                    {# <main class="grid-y medium-grid-frame medium-cell-block-y"> #}
-                        {# <main> #}
-                            {% block content %}
-                                <div class="cell medium-10">default</div>
-                            {% endblock %}
-                        {# </main> #}
-                    </main>
+                {# {% block content %} #}
+                <div class="cell medium-auto body">
+                    {% block content %}
+                       {# each page has its blocks #}
+                    {% endblock %}
                 </div>
+
                 {# footer #}
                 <div class="cell medium-shrink footer">
                     {% include "../includes/footer.twig" %}

@@ -2,17 +2,15 @@
 
 {% block content %}
 
-    {# here must include blocks of this page and create page.twig.json for data access#}
-    {% include 'blocks/block-main-top.twig' %}
+    {# full non scrollable #}
+    {# <div class="grid-y medium-grid-frame">
+        <div class="cell medium-4 item">cell 1</div>
+        <div class="cell medium-12 item">cell 2</div>
+    </div> #}
 
-    {# Another block #}
-    <div class="cell medium-6 item">cell 1</div>
-    <div class="cell medium-6 item">cell 2</div>
-    {# <div class="cell medium-3 item">cell 2</div> #}
-    {# <div class="cell medium-4">cell 2</div>
-    <div class="cell medium-4">cell 3</div>
-    <div class="cell medium-4">cell 4</div>
-    <div class="cell medium-4">cell 5</div>
-    <div class="cell medium-4">cell 6</div> #}
+    <div class="grid-x medium-cell-block-y">
+        {# blocks #}
+        {% include 'blocks/block-main-top.twig' %}
+    </div>
 
 {% endblock %}
